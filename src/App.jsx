@@ -6,6 +6,8 @@ function App() {
   const [pokemon, setPokemon] = useState([]);
   //game count used to track how many games you've played. Dependency for fetchPokemon useEffect
   const [gameCount, setGameCount] = useState(1);
+  //0 for active game, 1 for new game screen
+  const [winnerStatus, setWinnerStatus] = useState("");
   const [gameOver, setGameOver] = useState(0);
   //currentScore tracks currentScore
   const [currentScore, setCurrentScore] = useState(0);
@@ -30,6 +32,7 @@ function App() {
     if (temp.includes(mon)) {
       setCurrentScore(0);
       setGameOver(1);
+      setWinnerStatus("GAME OVER");
     } else {
       temp.push(mon);
       setPokeClickedTracker(temp);
@@ -89,7 +92,7 @@ function App() {
       )}
       {gameOver == 1 && (
         <div className="gameOverContainer">
-          <div className="gameOver">GAME OVER</div>
+          <div className="gameOver">{winnerStatus}</div>
           <button onClick={newGame}>new game</button>
         </div>
       )}
