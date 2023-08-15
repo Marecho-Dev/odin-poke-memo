@@ -29,18 +29,16 @@ function App() {
     setGameCount(gameCount + 1);
   };
   const handleButtonClick = (mon) => {
-    let temp = pokeClickedTracker;
-    if (temp.includes(mon)) {
+    if (pokeClickedTracker.includes(mon)) {
       setGameOver(1);
       setWinnerStatus("GAME OVER");
     } else {
-      temp.push(mon);
-      setPokeClickedTracker(temp);
+      setPokeClickedTracker((prevTracker) => [...prevTracker, mon]);
       setCurrentScore(currentScore + 1);
       if (currentScore + 1 > bestScore) {
         setBestScore(currentScore + 1);
       }
-      if (currentScore + 1 == 18) {
+      if (currentScore + 1 === 18) {
         setGameOver(1);
         setWinnerStatus("YOU WIN");
       }
