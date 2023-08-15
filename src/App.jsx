@@ -40,6 +40,10 @@ function App() {
       if (currentScore + 1 > bestScore) {
         setBestScore(currentScore + 1);
       }
+      if (currentScore + 1 == 18) {
+        setGameOver(1);
+        setWinnerStatus("YOU WIN");
+      }
       shufflePokemon(pokemon);
     }
   };
