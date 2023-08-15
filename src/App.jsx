@@ -87,7 +87,7 @@ function App() {
               key={mon.name}
               className="mon"
             >
-              <img key={mon} src={mon.sprites.front_default} />
+              <img key={mon} alt={mon.name} src={mon.sprites.front_default} />
             </button>
           ))}
         </div>
