@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import "./App.css";
+//I should fix magic numbers by declaring variables for things like 18 being the winning number
+//also for things like 500 which is just some arbitrary number that doesn't exceed the existing amount of pokemon range
 
 function App() {
   //array for all pokemon in current game session
@@ -15,7 +17,8 @@ function App() {
   const [bestScore, setBestScore] = useState(0);
   //pokeClickedTracker will track which pokemon have already been clicked in the current sesh
   const [pokeClickedTracker, setPokeClickedTracker] = useState([]);
-
+  const winningNumber = 18;
+  const PokemonRange = 1000;
   const shufflePokemon = (pokeArray) => {
     for (let i = pokeArray.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -38,7 +41,7 @@ function App() {
       if (currentScore + 1 > bestScore) {
         setBestScore(currentScore + 1);
       }
-      if (currentScore + 1 === 18) {
+      if (currentScore + 1 === winningNumber) {
         setGameOver(1);
         setWinnerStatus("YOU WIN");
       }
@@ -52,7 +55,7 @@ function App() {
       const numbers = new Set();
 
       while (numbers.size < 20) {
-        const randomNum = Math.floor(Math.random() * 500) + 1;
+        const randomNum = Math.floor(Math.random() * PokemonRange) + 1;
         numbers.add(randomNum);
       }
       for (let item of numbers) {
