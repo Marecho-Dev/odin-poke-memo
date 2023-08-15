@@ -25,12 +25,12 @@ function App() {
   };
   const newGame = () => {
     setGameOver(0);
+    setCurrentScore(0);
     setGameCount(gameCount + 1);
   };
   const handleButtonClick = (mon) => {
     let temp = pokeClickedTracker;
     if (temp.includes(mon)) {
-      setCurrentScore(0);
       setGameOver(1);
       setWinnerStatus("GAME OVER");
     } else {
