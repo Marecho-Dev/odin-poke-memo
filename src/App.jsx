@@ -88,10 +88,10 @@ function App() {
         </div>
       )}
       {gameOver == 1 && (
-        <>
+        <div className="gameOverContainer">
           <div className="gameOver">GAME OVER</div>
           <button onClick={newGame}>new game</button>
-        </>
+        </div>
       )}
     </>
   );
