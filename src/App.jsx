@@ -11,7 +11,7 @@ function App() {
   //bestScore tracks high score
   const [bestScore, setBestScore] = useState(0);
   //pokeClickedTracker will track which pokemon have already been clicked in the current sesh
-  const [pokeClickedTracker, setPokeClickedTracker] = [];
+  const [pokeClickedTracker, setPokeClickedTracker] = useState([]);
 
   const shufflePokemon = (pokeArray) => {
     for (let i = pokeArray.length - 1; i > 0; i--) {
@@ -22,13 +22,17 @@ function App() {
   };
 
   const handleButtonClick = (mon) => {
-    console.log("handling button click");
     let temp = pokeClickedTracker;
     if (temp.includes(mon)) {
+      setCurrentScore(0);
       console.log("fail");
     } else {
       temp.push(mon);
       setPokeClickedTracker(temp);
+      setCurrentScore(currentScore + 1);
+      if (currentScore + 1 > bestScore) {
+        setBestScore(currentScore + 1);
+      }
     }
   };
   useEffect(() => {
