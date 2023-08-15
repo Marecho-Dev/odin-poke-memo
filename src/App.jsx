@@ -6,6 +6,7 @@ function App() {
   const [pokemon, setPokemon] = useState([]);
   //game count used to track how many games you've played. Dependency for fetchPokemon useEffect
   const [gameCount, setGameCount] = useState(1);
+  const [gameOver, setGameOver] = useState(0);
   //currentScore tracks currentScore
   const [currentScore, setCurrentScore] = useState(0);
   //bestScore tracks high score
@@ -20,12 +21,15 @@ function App() {
     }
     setPokemon(pokeArray);
   };
-
+  const newGame = () => {
+    setGameOver(0);
+    setGameCount(gameCount + 1);
+  };
   const handleButtonClick = (mon) => {
     let temp = pokeClickedTracker;
     if (temp.includes(mon)) {
       setCurrentScore(0);
-      console.log("fail");
+      setGameOver(1);
     } else {
       temp.push(mon);
       setPokeClickedTracker(temp);
@@ -33,6 +37,7 @@ function App() {
       if (currentScore + 1 > bestScore) {
         setBestScore(currentScore + 1);
       }
+      shufflePokemon(pokemon);
     }
   };
   useEffect(() => {
@@ -69,17 +74,25 @@ function App() {
         <div className="currentScore">Current Score: {currentScore}</div>
         <div className="bestScore">Best Score: {bestScore}</div>
       </div>
-      <div className="container">
-        {pokemon.slice(0, 15).map((mon) => (
-          <button
-            onClick={() => handleButtonClick(mon)}
-            key={mon.name}
-            className="mon"
-          >
-            <img key={mon} src={mon.sprites.front_default} />
-          </button>
-        ))}
-      </div>
+      {gameOver == 0 && (
+        <div className="container">
+          {pokemon.slice(0, 15).map((mon) => (
+            <button
+              onClick={() => handleButtonClick(mon)}
+              key={mon.name}
+              className="mon"
+            >
+              <img key={mon} src={mon.sprites.front_default} />
+            </button>
+          ))}
+        </div>
+      )}
+      {gameOver == 1 && (
+        <>
+          <div className="gameOver">GAME OVER</div>
+          <button onClick={newGame}>new game</button>
+        </>
+      )}
     </>
   );
 }
