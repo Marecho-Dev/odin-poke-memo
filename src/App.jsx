@@ -37,6 +37,10 @@ function App() {
 
   return (
     <>
+      <div className="scores">
+        <div className="currentScore">Current Score: 0</div>
+        <div className="bestScore">Best Score: 0</div>
+      </div>
       <div className="container">
         {pokemon.map((mon) => (
           <button key={mon} className="mon">
