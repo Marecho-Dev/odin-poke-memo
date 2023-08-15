@@ -2,11 +2,16 @@ import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
+  //array for all pokemon in current game session
   const [pokemon, setPokemon] = useState([]);
+  //game count used to track how many games you've played. Dependency for fetchPokemon useEffect
   const [gameCount, setGameCount] = useState(1);
+  //currentScore tracks currentScore
   const [currentScore, setCurrentScore] = useState(0);
+  //bestScore tracks high score
   const [bestScore, setBestScore] = useState(0);
-  const [polkeClickedTracker, setPokeClickedTracker] = [];
+  //pokeClickedTracker will track which pokemon have already been clicked in the current sesh
+  const [pokeClickedTracker, setPokeClickedTracker] = [];
 
   const shufflePokemon = (pokeArray) => {
     for (let i = pokeArray.length - 1; i > 0; i--) {
@@ -17,8 +22,13 @@ function App() {
   };
 
   const handleButtonClick = (mon) => {
-    if (polkeClickedTracker.include(mon)) {
+    console.log("handling button click");
+    let temp = pokeClickedTracker;
+    if (temp.includes(mon)) {
       console.log("fail");
+    } else {
+      temp.push(mon);
+      setPokeClickedTracker(temp);
     }
   };
   useEffect(() => {
@@ -53,12 +63,12 @@ function App() {
     <>
       <div className="scores">
         <div className="currentScore">Current Score: {currentScore}</div>
-        <div className="bestScore">Best Score: 0</div>
+        <div className="bestScore">Best Score: {bestScore}</div>
       </div>
       <div className="container">
         {pokemon.slice(0, 15).map((mon) => (
           <button
-            onClick={handleButtonClick(mon)}
+            onClick={() => handleButtonClick(mon)}
             key={mon.name}
             className="mon"
           >
