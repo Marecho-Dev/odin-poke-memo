@@ -1,0 +1,58 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0 auto;
+}
+#root {
+  height: 100%;
+  width: 100%;
+  background-image: url("https://e1.pxfuel.com/desktop-wallpaper/579/523/desktop-wallpaper-latios-pokemon-motorbikes-pixel-art-vehicles-pokemon-pixel-art.jpg");
+  background-image: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container {
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.mon {
+  width: 19%;
+  height: 100%;
+  color: black;
+  align-items: center;
+  border: 2px;
+  border-style: solid;
+  border-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(51, 51, 51, 0.42);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12.7px);
+  -webkit-backdrop-filter: blur(12.7px);
+  border: 1px solid rgba(51, 51, 51, 0.88);
+}
+
+.mon:hover {
+  background: rgba(0, 0, 0, 0.47);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.mon:active {
+  box-shadow: 2px 5px 5px #686666 inset;
+}
